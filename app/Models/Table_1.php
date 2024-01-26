@@ -21,8 +21,8 @@ class Table_1 extends Model
         'created_at', 'updated_at','deleted_at'
     ];
 
-    // public function table_2()
-    // {
-    // return $this->HasMany(Table_2::class, 'table_2_id', 'id');
-    // }
+    public function table_2()
+    {
+    return $this->HasMany(Table_2::class)->where('state','A');
+    }
 }

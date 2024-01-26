@@ -18,7 +18,7 @@ class CreateTable1Table extends Migration
             $table->string('campo_1')->nullable();
             $table->string('campo_2')->nullable();
             $table->string('campo_3')->nullable();
-            // $table->foreignId('table_2_id')->nullable()->references('id')->on('table_2');
+            // $table->string('campo_4')->nullable();
             $table->char('state')->default('A');
             $table->timestamps();
         });
