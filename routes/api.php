@@ -25,6 +25,11 @@ Route::post('tabla_3_4/create', [TesisController::class,'create_tabla_3_4']);
 Route::put('tabla_3_4/update/{id}', [TesisController::class,'update_tabla_3_4']);
 Route::delete('tabla_3_4/delete/{id}', [TesisController::class,'delete_tabla_3_4']);
 
+Route::get('tabla_5_6/get', [TesisController::class,'get_tabla_5_6']);
+Route::post('tabla_5_6/create', [TesisController::class,'create_tabla_5_6']);
+Route::put('tabla_5_6/update/{id}', [TesisController::class,'update_tabla_5_6']);
+Route::delete('tabla_5_6/delete/{id}', [TesisController::class,'delete_tabla_5_6']);
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
