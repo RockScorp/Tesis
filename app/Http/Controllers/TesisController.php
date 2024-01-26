@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Table_1;
 use App\Models\Table_2;
 use App\Models\Table_3_4;
+use App\Models\Table_5_6;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -130,7 +131,7 @@ class TesisController extends Controller
             // return $rqt;
             $tab1=Table_3_4::where('state','A')->find($id);
             if (!$tab1) return response()->json(["Error" => "Id ingresado no existe..."]); //  validación
-            $tab1->fill([ //proveedor
+            $tab1->fill([
                 "campo_1"=>$rqt->campo_1,
             ])->save();
 
@@ -146,6 +147,69 @@ class TesisController extends Controller
         try {
             DB::beginTransaction();
             $tab1=Table_3_4::where('state','A')->find($id);
+            if (!$tab1) return response()->json(["Error" => "Id ingresado no existe..."]); //  validación
+            $tab1->fill([
+                "state"=>"I"
+            ])->save();
+            DB::commit();
+            return response()->json(["Msg"=>"Registro eliminado"]);
+        } catch (Exception $e) {
+            DB::rollBack();
+            return response()->json(["Error".$e]);
+        }
+    }
+
+    //================= table 5 y 6
+
+    public function get_tabla_5_6(){
+        $variable=Table_5_6::where('state','A')->with('table_3')->get();
+        if(count($variable)==0) return response()->json(["Error" => "No hay Registros..."]);
+        return response()->json($variable);
+    }
+
+    public function create_tabla_5_6(Request $rqt){
+        try {
+            DB::beginTransaction();
+            Table_5_6::updateOrCreate([ //  servicio fijo/variable
+                "campo_1"=>$rqt->campo_1,
+                "campo_2"=>$rqt->campo_2,
+                "table_3_id"=>$rqt->table_3_id,
+            ],[
+                "state"=>"A"
+            ]);
+
+            DB::commit();
+            return response()->json(["Msg"=>"Registro creado"]);
+        } catch (Exception $e) {
+            DB::rollBack();
+            return response()->json(["Error".$e]);
+        }
+    }
+
+    public function update_tabla_5_6(Request $rqt, $id){
+        try {
+            DB::beginTransaction();
+            // return $rqt;
+            $tab1=Table_5_6::where('state','A')->find($id);
+            if (!$tab1) return response()->json(["Error" => "Id ingresado no existe..."]); //  validación
+            $tab1->fill([
+                "campo_1"=>$rqt->campo_1,
+                "campo_2"=>$rqt->campo_2,
+                "table_3_id"=>$rqt->table_3_id,
+            ])->save();
+
+            DB::commit();
+            return response()->json(["Msg"=>"Registro actualizado"]);
+        } catch (Exception $e) {
+            DB::rollBack();
+            return response()->json(["Error".$e]);
+        }
+    }
+
+    public function delete_tabla_5_6($id){
+        try {
+            DB::beginTransaction();
+            $tab1=Table_5_6::where('state','A')->find($id);
             if (!$tab1) return response()->json(["Error" => "Id ingresado no existe..."]); //  validación
             $tab1->fill([
                 "state"=>"I"
