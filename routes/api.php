@@ -15,10 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('tabla_1/get', [TesisController::class,'get_tabla_1']);
-Route::post('tabla_1/create', [TesisController::class,'create_tabla_1']);
-Route::put('tabla_1/update/{id}', [TesisController::class,'update_tabla_1']);
-Route::delete('tabla_1/delete/{id}', [TesisController::class,'delete_tabla_1']);
+Route::get('tabla_1_2/get', [TesisController::class,'get_tabla_1_2']);  //table_2 en uso
+Route::post('tabla_1_2/create', [TesisController::class,'create_tabla_1_2']);
+Route::put('tabla_1_2/update/{id}', [TesisController::class,'update_tabla_1_2']);
+Route::delete('tabla_1_2/delete/{id}', [TesisController::class,'delete_tabla_1_2']);
 
 Route::get('tabla_3_4/get', [TesisController::class,'get_tabla_3_4']);
 Route::post('tabla_3_4/create', [TesisController::class,'create_tabla_3_4']);
@@ -29,6 +29,11 @@ Route::get('tabla_5_6/get', [TesisController::class,'get_tabla_5_6']);
 Route::post('tabla_5_6/create', [TesisController::class,'create_tabla_5_6']);
 Route::put('tabla_5_6/update/{id}', [TesisController::class,'update_tabla_5_6']);
 Route::delete('tabla_5_6/delete/{id}', [TesisController::class,'delete_tabla_5_6']);
+
+Route::get('tabla_7/get', [TesisController::class,'get_tabla_7']);
+Route::post('tabla_7/create', [TesisController::class,'create_tabla_7']);
+Route::put('tabla_7/update/{id}', [TesisController::class,'update_tabla_7']);
+Route::delete('tabla_7/delete/{id}', [TesisController::class,'delete_tabla_7']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
