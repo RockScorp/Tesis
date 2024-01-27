@@ -22,6 +22,6 @@ class Table_5_6 extends Model
 
     public function table_3()
     {
-    return $this->belongsTo(Table_3_4::class, 'table_3_id', 'id')->where('state','A');
+        return $this->belongsTo(Table_3_4::class, 'table_3_id', 'id')->where('state','A');
     }
 }

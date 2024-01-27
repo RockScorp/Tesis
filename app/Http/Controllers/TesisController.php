@@ -6,6 +6,7 @@ use App\Models\Table_1;
 use App\Models\Table_2;
 use App\Models\Table_3_4;
 use App\Models\Table_5_6;
+use App\Models\Table_7;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -23,7 +24,7 @@ class TesisController extends Controller
     public function create_tabla_1_2(Request $rqt){
         try {
             DB::beginTransaction();
-            $tab1=Table_1::updateOrCreate([ //proveedor
+            $tab=Table_1::updateOrCreate([ //proveedor
                 "campo_1"=>$rqt->campo_1,
                 "campo_2"=>$rqt->campo_2,
                 "campo_3"=>$rqt->campo_3,
@@ -36,7 +37,7 @@ class TesisController extends Controller
             foreach($var as $var_req){
                 Table_2::create([   //contacto
                     "campo_1"=>$var_req["tb2_campo_1"],
-                    "table_1_id"=>$tab1->id,
+                    "table_1_id"=>$tab->id,
                 ]);
             }
             DB::commit();
@@ -51,16 +52,16 @@ class TesisController extends Controller
         try {
             DB::beginTransaction();
             // return $rqt;
-            $tab1=Table_1::where('state','A')->with('table_2')->find($id);
-            if (!$tab1) return response()->json(["Error" => "Id ingresado no existe..."]); //  validación
-            $tab1->fill([ //proveedor
+            $tab=Table_1::where('state','A')->with('table_2')->find($id);
+            if (!$tab) return response()->json(["Error" => "Id ingresado no existe..."]); //  validación
+            $tab->fill([ //proveedor
                 "campo_1"=>$rqt->campo_1,
                 "campo_2"=>$rqt->campo_2,
                 "campo_3"=>$rqt->campo_3,
                 // "campo_4"=>$rqt->campo_4,  //campo q se dejará de usar (contacto)
             ])->save();
 
-            if($tab1->table_2){
+            if($tab->table_2){
                 DB::table('table_2')->where('table_1_id', $id)->update(['state' => 'I']);
                 $var=$rqt->table_2;
                 // return $var;
@@ -86,9 +87,9 @@ class TesisController extends Controller
     public function delete_tabla_1_2($id){
         try {
             DB::beginTransaction();
-            $tab1=Table_1::where('state','A')->with('table_2')->find($id);
-            if (!$tab1) return response()->json(["Error" => "Id ingresado no existe..."]); //  validación
-            $tab1->fill([
+            $tab=Table_1::where('state','A')->with('table_2')->find($id);
+            if (!$tab) return response()->json(["Error" => "Id ingresado no existe..."]); //  validación
+            $tab->fill([
                 "state"=>"I"
             ])->save();
             DB::table('table_2')->where('table_1_id', $id)->update(['state' => 'I']);
@@ -129,9 +130,9 @@ class TesisController extends Controller
         try {
             DB::beginTransaction();
             // return $rqt;
-            $tab1=Table_3_4::where('state','A')->find($id);
-            if (!$tab1) return response()->json(["Error" => "Id ingresado no existe..."]); //  validación
-            $tab1->fill([
+            $tab=Table_3_4::where('state','A')->find($id);
+            if (!$tab) return response()->json(["Error" => "Id ingresado no existe..."]); //  validación
+            $tab->fill([
                 "campo_1"=>$rqt->campo_1,
             ])->save();
 
@@ -146,9 +147,9 @@ class TesisController extends Controller
     public function delete_tabla_3_4($id){
         try {
             DB::beginTransaction();
-            $tab1=Table_3_4::where('state','A')->find($id);
-            if (!$tab1) return response()->json(["Error" => "Id ingresado no existe..."]); //  validación
-            $tab1->fill([
+            $tab=Table_3_4::where('state','A')->find($id);
+            if (!$tab) return response()->json(["Error" => "Id ingresado no existe..."]); //  validación
+            $tab->fill([
                 "state"=>"I"
             ])->save();
             DB::commit();
@@ -190,9 +191,9 @@ class TesisController extends Controller
         try {
             DB::beginTransaction();
             // return $rqt;
-            $tab1=Table_5_6::where('state','A')->find($id);
-            if (!$tab1) return response()->json(["Error" => "Id ingresado no existe..."]); //  validación
-            $tab1->fill([
+            $tab=Table_5_6::where('state','A')->find($id);
+            if (!$tab) return response()->json(["Error" => "Id ingresado no existe..."]); //  validación
+            $tab->fill([
                 "campo_1"=>$rqt->campo_1,
                 "campo_2"=>$rqt->campo_2,
                 "table_3_id"=>$rqt->table_3_id,
@@ -209,9 +210,9 @@ class TesisController extends Controller
     public function delete_tabla_5_6($id){
         try {
             DB::beginTransaction();
-            $tab1=Table_5_6::where('state','A')->find($id);
-            if (!$tab1) return response()->json(["Error" => "Id ingresado no existe..."]); //  validación
-            $tab1->fill([
+            $tab=Table_5_6::where('state','A')->find($id);
+            if (!$tab) return response()->json(["Error" => "Id ingresado no existe..."]); //  validación
+            $tab->fill([
                 "state"=>"I"
             ])->save();
             DB::commit();
@@ -225,7 +226,7 @@ class TesisController extends Controller
     //================= table 7
 
     public function get_tabla_7(){
-        $variable=Table_5_6::where('state','A')->with('table_3')->get();
+        $variable=Table_7::where('state','A')->with('table_4')->get();
         if(count($variable)==0) return response()->json(["Error" => "No hay Registros..."]);
         return response()->json($variable);
     }
@@ -233,10 +234,12 @@ class TesisController extends Controller
     public function create_tabla_7(Request $rqt){
         try {
             DB::beginTransaction();
-            Table_5_6::updateOrCreate([ //  servicio fijo/variable
+            Table_7::updateOrCreate([ //  Materia Prima
                 "campo_1"=>$rqt->campo_1,
                 "campo_2"=>$rqt->campo_2,
-                "table_3_id"=>$rqt->table_3_id,
+                "campo_3"=>$rqt->campo_3,
+                "table_4_id"=>$rqt->table_4_id,
+                "campo_4"=>$rqt->campo_4,
             ],[
                 "state"=>"A"
             ]);
@@ -253,12 +256,14 @@ class TesisController extends Controller
         try {
             DB::beginTransaction();
             // return $rqt;
-            $tab1=Table_5_6::where('state','A')->find($id);
-            if (!$tab1) return response()->json(["Error" => "Id ingresado no existe..."]); //  validación
-            $tab1->fill([
+            $tab=Table_7::where('state','A')->find($id);
+            if (!$tab) return response()->json(["Error" => "Id ingresado no existe..."]); //  validación
+            $tab->fill([
                 "campo_1"=>$rqt->campo_1,
                 "campo_2"=>$rqt->campo_2,
-                "table_3_id"=>$rqt->table_3_id,
+                "campo_3"=>$rqt->campo_3,
+                "table_4_id"=>$rqt->table_4_id,
+                "campo_4"=>$rqt->campo_4,
             ])->save();
 
             DB::commit();
@@ -272,9 +277,9 @@ class TesisController extends Controller
     public function delete_tabla_7($id){
         try {
             DB::beginTransaction();
-            $tab1=Table_5_6::where('state','A')->find($id);
-            if (!$tab1) return response()->json(["Error" => "Id ingresado no existe..."]); //  validación
-            $tab1->fill([
+            $tab=Table_7::where('state','A')->find($id);
+            if (!$tab) return response()->json(["Error" => "Id ingresado no existe..."]); //  validación
+            $tab->fill([
                 "state"=>"I"
             ])->save();
             DB::commit();

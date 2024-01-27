@@ -18,8 +18,7 @@ class CreateTable7Table extends Migration
             $table->string('campo_1')->nullable();
             $table->string('campo_2')->nullable();
             $table->string('campo_3')->nullable();
-            $table->foreignId('table_3_id')->nullable()->references('id')->on('table_3');
-            $table->foreignId('table_4_id')->nullable()->references('id')->on('table_4');
+            $table->foreignId('table_4_id')->nullable()->references('id')->on('table_3_4');
             $table->integer('campo_4')->nullable();
             $table->char('state')->default('A');
             $table->timestamps();
