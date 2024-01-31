@@ -1,0 +1,126 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Tesis",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000"
+        }
+    ],
+    "paths": {
+        "/api/tabla_1_2/get": {
+            "get": {
+                "tags": [
+                    "Table 1"
+                ],
+                "summary": "Muestra los Registros",
+                "description": "Permite visualizar un listado de todos los registros",
+                "operationId": "7d56c9b7665fec03ccc7213033631541",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "campo_1": {
+                                                        "type": "string",
+                                                        "example": "Nombre Example"
+                                                    },
+                                                    "campo_2": {
+                                                        "type": "string",
+                                                        "example": "Apellido Example"
+                                                    },
+                                                    "campo_3": {
+                                                        "type": "string",
+                                                        "example": "Empresa Example SAC"
+                                                    },
+                                                    "state": {
+                                                        "type": "char",
+                                                        "example": "A"
+                                                    },
+                                                    "table_2": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "properties": {
+                                                                "id": {
+                                                                    "type": "integer",
+                                                                    "example": 1
+                                                                },
+                                                                "campo_1": {
+                                                                    "type": "integer",
+                                                                    "example": "+51 975616231"
+                                                                },
+                                                                "table_1_id": {
+                                                                    "type": "integer",
+                                                                    "example": 1
+                                                                },
+                                                                "state": {
+                                                                    "type": "char",
+                                                                    "example": "A"
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        }
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "size": {
+                                            "type": "number",
+                                            "example": 1
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "invalid",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "No se encuentran los datos"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "name": "bearerAuth",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    }
+}

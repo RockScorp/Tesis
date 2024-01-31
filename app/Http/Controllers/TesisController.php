@@ -15,6 +15,43 @@ class TesisController extends Controller
 {
     //================= table 1 y 2
 
+    /**
+     * Permite visualizar un listado de todos los registros
+     * @OA\Get (
+     *     path="/api/tabla_1_2/get",
+     *     summary="Muestra los Registros",
+     *     security={{ "bearerAuth": {} }},
+     *     tags={"Table 1 - 2"},
+     *     @OA\Response(response=200,description="success",
+     *          @OA\JsonContent(
+     *              @OA\Property(type="array",property="data",
+     *                     @OA\Items(type="object",
+     *                             @OA\Property(property="id", type="integer", example=1),
+     *                             @OA\Property(property="campo_1", type="string", example="Nombre Example"),
+     *                             @OA\Property(property="campo_2", type="string", example="Apellido Example"),
+     *                             @OA\Property(property="campo_3", type="string", example="Empresa Example SAC"),
+     *                             @OA\Property(property="state", type="char", example="A"),
+     *                             @OA\Property(type="array", property="table_2",
+     *                                  @OA\Items(type="object",
+     *                                     @OA\Property(property="id", type="integer", example=1),
+     *                                     @OA\Property(property="campo_1", type="integer", example="+51 975616231"),
+     *                                     @OA\Property(property="table_1_id", type="integer", example=1),
+     *                                     @OA\Property(property="state", type="char", example="A"),
+     *                                  )
+     *                             )
+     *                        )
+     *                ),
+     *          @OA\Property(property="size", type="number", example=1),
+     *          )
+     *      ),
+     *         @OA\Response(response=400,description="invalid",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="error", type="string", example="No se encuentran los datos")
+     *             )
+     *         )
+     *  )
+     */
+
     public function get_tabla_1_2(){
         $variable=Table_1::where('state','A')->with('table_2')->get();
         if(count($variable)==0) return response()->json(["Error" => "No hay Registros..."]);
