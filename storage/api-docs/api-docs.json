@@ -105,7 +105,7 @@
                     "Table 1 - 2"
                 ],
                 "summary": "Crea Registros",
-                "description": "Crear nuevos Registros para Proveedores",
+                "description": "Crear nuevos Registros para Table 1 y 2",
                 "operationId": "b07a972e7e84908b81aca574e24d3d50",
                 "requestBody": {
                     "content": {
@@ -204,14 +204,14 @@
                 ]
             }
         },
-        "/api/proveedores/update_/{id}": {
+        "/api/tabla_1_2/update/{id}": {
             "put": {
                 "tags": [
                     "Table 1 - 2"
                 ],
                 "summary": "Actualiza Registros",
-                "description": "Actualiza un Registro de Proveedor mediante su ID",
-                "operationId": "fe4602f720e754679d5a97387605c094",
+                "description": "Actualiza un Registro de Table 1 y 2 mediante su ID",
+                "operationId": "34e1e40110c32ebccb753645354e1f09",
                 "parameters": [
                     {
                         "name": "id",
@@ -389,14 +389,14 @@
                 ]
             }
         },
-        "/api/proveedores/delete_/{id}": {
+        "/api/tabla_1_2/delete/{id}": {
             "delete": {
                 "tags": [
                     "Table 1 - 2"
                 ],
                 "summary": "Inactiva Registros",
-                "description": "Inactiva Registros de Proveedor",
-                "operationId": "6ce9298ea51b6c24569de549488dbfe7",
+                "description": "Inactiva Registros de Table 1 y 2",
+                "operationId": "57f426d4cb663bbb88828a6b2f239294",
                 "parameters": [
                     {
                         "name": "id",
