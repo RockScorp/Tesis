@@ -24,24 +24,19 @@ class TesisController extends Controller
      *     tags={"Table 1 - 2"},
      *     @OA\Response(response=200,description="success",
      *          @OA\JsonContent(
-     *              @OA\Property(type="array",property="data",
-     *                     @OA\Items(type="object",
-     *                             @OA\Property(property="id", type="integer", example=1),
-     *                             @OA\Property(property="campo_1", type="string", example="Nombre Example"),
-     *                             @OA\Property(property="campo_2", type="string", example="Apellido Example"),
-     *                             @OA\Property(property="campo_3", type="string", example="Empresa Example SAC"),
-     *                             @OA\Property(property="state", type="char", example="A"),
-     *                             @OA\Property(type="array", property="table_2",
-     *                                  @OA\Items(type="object",
-     *                                     @OA\Property(property="id", type="integer", example=1),
-     *                                     @OA\Property(property="campo_1", type="integer", example="+51 975616231"),
-     *                                     @OA\Property(property="table_1_id", type="integer", example=1),
-     *                                     @OA\Property(property="state", type="char", example="A"),
-     *                                  )
-     *                             )
-     *                        )
-     *                ),
-     *          @OA\Property(property="size", type="number", example=1),
+     *              @OA\Property(property="id", type="integer", example=1),
+     *              @OA\Property(property="campo_1", type="string", example="Nombre Example"),
+     *              @OA\Property(property="campo_2", type="string", example="Apellido Example"),
+     *              @OA\Property(property="campo_3", type="string", example="Empresa Example SAC"),
+     *              @OA\Property(property="state", type="char", example="A"),
+     *              @OA\Property(type="array", property="table_2",
+     *                  @OA\Items(type="object",
+     *                      @OA\Property(property="id", type="integer", example=1),
+     *                      @OA\Property(property="campo_1", type="integer", example="+51 975616231"),
+     *                      @OA\Property(property="table_1_id", type="integer", example=1),
+     *                      @OA\Property(property="state", type="char", example="A"),
+     *                  )
+     *              )
      *          )
      *      ),
      *         @OA\Response(response=400,description="invalid",
@@ -57,6 +52,61 @@ class TesisController extends Controller
         if(count($variable)==0) return response()->json(["Error" => "No hay Registros..."]);
         return response()->json($variable);
     }
+
+    /**
+     * Crear nuevos Registros para Table 1 y 2
+     * @OA\Post(
+     *     path="/api/tabla_1_2/create",
+     *     summary="Crea Registros",
+     *     security={{ "bearerAuth":{} }},
+     *     tags={"Table 1 - 2"},
+     *      @OA\RequestBody(
+     *          @OA\MediaType(mediaType="aplication/json",
+     *              @OA\Schema(
+     *                  @OA\Property(property="tipo_documento_id", type="integer"),
+     *                  @OA\Property(property="razon_social", type="integer"),
+     *                  @OA\Property(property="numero_documento", type="integer"),
+     *                  @OA\Property(property="direccion", type="string"),
+     *                  @OA\Property(property="telefono", type="string"),
+     *                  @OA\Property(property="correo", type="string"),
+     *
+     *                  @OA\Property(property="contactos", type="array",
+     *                      @OA\Items(type="object",
+     *                          @OA\Property(property="numero", type="string"),
+     *                      )
+     *                  ),
+     *
+     *                  example={
+     *                      "tipo_documento_id": 1,
+     *                      "razon_social": "razon social example 1",
+     *                      "numero_documento": 123456789,
+     *                      "direccion":"direccion example 1",
+     *                      "telefono":"+51 987654321",
+     *                      "correo":"correo@example1.com",
+     *                      "contactos":{
+     *                          {
+     *                              "contactos": 987212321,
+     *                          },
+     *                          {
+     *                              "contactos": 978131544,
+     *                          }
+     *                      }
+     *                   }
+     *              )
+     *          )
+     *      ),
+     *      @OA\Response(response=200,description="success",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="resp", type="string", example="Registro creado correctamente")
+     *         )
+     *     ),
+     *     @OA\Response(response=400, description="invalid",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="Error", type="string", example="Error: El Registro no se ha creado"),
+     *         )
+     *     ),
+     * )
+     */
 
     public function create_tabla_1_2(Request $rqt){
         try {
@@ -84,6 +134,76 @@ class TesisController extends Controller
             return response()->json(["Error".$e]);
         }
     }
+
+    /**
+     * Actualiza un Registro de Table 1 y 2 mediante su ID
+     *
+     * @OA\Put(
+     *     path="/api/tabla_1_2/update/{id}",
+     *     summary="Actualiza Registros",
+     *     security={{ "bearerAuth":{} }},
+     *     tags={"Table 1 - 2"},
+     *     @OA\Parameter(in="path",name="id",required=true,
+     *          @OA\Schema(type="string")
+     *     ),
+     *      @OA\Parameter(description="tipo de documento (RUC)",@OA\Schema(type="number"), name="tipo_documento_id", in="query", required=false, example="1"),
+     *      @OA\Parameter(description="Razón Social del Proveedor",@OA\Schema(type="string"), name="razon_social", in="query", required=false, example="razon social example 1"),
+     *      @OA\Parameter(description="Su número de documento",@OA\Schema(type="string"), name="numero_documento", in="query", required=false, example="123456789"),
+     *      @OA\Parameter(description="Dirección del Proveedor",@OA\Schema(type="string"), name="direccion", in="query", required=false, example="direccion example 1"),
+     *      @OA\Parameter(description="Su número de teléfono",@OA\Schema(type="string"), name="telefono", in="query", required=false, example="+51 987654321"),
+     *      @OA\Parameter(description="Su correo Electrónico",@OA\Schema(type="string"), name="correo", in="query", required=false, example="correo@example1.com"),
+     *      @OA\Parameter(description="Su contacto número/correo",@OA\Schema(type="string"), name="numero", in="query", required=false, example="978131544"),
+     *      @OA\RequestBody(
+     *          @OA\MediaType(mediaType="aplication/json",
+     *              @OA\Schema(
+     *                  @OA\Property(property="tipo_documento_id", type="integer"),
+     *                  @OA\Property(property="razon_social", type="string"),
+     *                  @OA\Property(property="numero_documento", type="string"),
+     *                  @OA\Property(property="direccion", type="string"),
+     *                  @OA\Property(property="telefono", type="string"),
+     *                  @OA\Property(property="correo", type="string"),
+     *
+     *                  @OA\Property(property="contactos", type="array",
+     *                      @OA\Items(type="object",
+     *                          @OA\Property(property="numero", type="string"),
+     *                      )
+     *                  ),
+     *
+     *                  example={
+     *                      "tipo_documento_id": 1,
+     *                      "razon_social": "razon social example 1",
+     *                      "numero_documento": 123456789,
+     *                      "direccion":"direccion example 1",
+     *                      "telefono":"+51 987654321",
+     *                      "correo":"correo@example1.com",
+     *                      "contactos":{
+     *                          {
+     *                              "contactos": 987212321,
+     *                          },
+     *                          {
+     *                              "contactos": 978131544,
+     *                          }
+     *                      }
+     *                   }
+     *              )
+     *          )
+     *      ),
+     *         @OA\Response(
+     *         response=200,
+     *         description="success",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="resp", type="string", example="Registro actualizado correctamente")
+     *         )
+     *      ),
+     *         @OA\Response(
+     *         response=501,
+     *         description="invalid",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="error", type="string", example="error: Registro no actualizado...")
+     *             )
+     *         )
+     * )
+     */
 
     public function update_tabla_1_2(Request $rqt, $id){
         try {
@@ -120,6 +240,32 @@ class TesisController extends Controller
             return response()->json(["Error".$e]);
         }
     }
+
+    /**
+     * Inactiva Registros de Table 1 y 2
+     * @OA\Delete (
+     *     path="/api/tabla_1_2/delete/{id}",
+     *     summary = "Inactiva Registros",
+     *     security={{ "bearerAuth": {} }},
+     *     tags={"Table 1 - 2"},
+     *     @OA\Parameter(
+     *        in="path",
+     *        name="id",
+     *        required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Response(response=200,description="success",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="resp", type="string", example="Registro inactivado correctamente")
+     *         )
+     *     ),
+     *     @OA\Response(response=400,description="invalid",
+     *          @OA\JsonContent(
+     *             @OA\Property(property="error", type="string", example="Error: El registro no se ha inactivado"),
+     *          )
+     *      ),
+     *  )
+     */
 
     public function delete_tabla_1_2($id){
         try {

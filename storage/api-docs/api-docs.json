@@ -13,7 +13,7 @@
         "/api/tabla_1_2/get": {
             "get": {
                 "tags": [
-                    "Table 1"
+                    "Table 1 - 2"
                 ],
                 "summary": "Muestra los Registros",
                 "description": "Permite visualizar un listado de todos los registros",
@@ -25,7 +25,27 @@
                             "application/json": {
                                 "schema": {
                                     "properties": {
-                                        "data": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "campo_1": {
+                                            "type": "string",
+                                            "example": "Nombre Example"
+                                        },
+                                        "campo_2": {
+                                            "type": "string",
+                                            "example": "Apellido Example"
+                                        },
+                                        "campo_3": {
+                                            "type": "string",
+                                            "example": "Empresa Example SAC"
+                                        },
+                                        "state": {
+                                            "type": "char",
+                                            "example": "A"
+                                        },
+                                        "table_2": {
                                             "type": "array",
                                             "items": {
                                                 "properties": {
@@ -34,52 +54,20 @@
                                                         "example": 1
                                                     },
                                                     "campo_1": {
-                                                        "type": "string",
-                                                        "example": "Nombre Example"
+                                                        "type": "integer",
+                                                        "example": "+51 975616231"
                                                     },
-                                                    "campo_2": {
-                                                        "type": "string",
-                                                        "example": "Apellido Example"
-                                                    },
-                                                    "campo_3": {
-                                                        "type": "string",
-                                                        "example": "Empresa Example SAC"
+                                                    "table_1_id": {
+                                                        "type": "integer",
+                                                        "example": 1
                                                     },
                                                     "state": {
                                                         "type": "char",
                                                         "example": "A"
-                                                    },
-                                                    "table_2": {
-                                                        "type": "array",
-                                                        "items": {
-                                                            "properties": {
-                                                                "id": {
-                                                                    "type": "integer",
-                                                                    "example": 1
-                                                                },
-                                                                "campo_1": {
-                                                                    "type": "integer",
-                                                                    "example": "+51 975616231"
-                                                                },
-                                                                "table_1_id": {
-                                                                    "type": "integer",
-                                                                    "example": 1
-                                                                },
-                                                                "state": {
-                                                                    "type": "char",
-                                                                    "example": "A"
-                                                                }
-                                                            },
-                                                            "type": "object"
-                                                        }
                                                     }
                                                 },
                                                 "type": "object"
                                             }
-                                        },
-                                        "size": {
-                                            "type": "number",
-                                            "example": 1
                                         }
                                     },
                                     "type": "object"
@@ -96,6 +84,355 @@
                                         "error": {
                                             "type": "string",
                                             "example": "No se encuentran los datos"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/tabla_1_2/create": {
+            "post": {
+                "tags": [
+                    "Table 1 - 2"
+                ],
+                "summary": "Crea Registros",
+                "description": "Crear nuevos Registros para Proveedores",
+                "operationId": "b07a972e7e84908b81aca574e24d3d50",
+                "requestBody": {
+                    "content": {
+                        "aplication/json": {
+                            "schema": {
+                                "properties": {
+                                    "tipo_documento_id": {
+                                        "type": "integer"
+                                    },
+                                    "razon_social": {
+                                        "type": "integer"
+                                    },
+                                    "numero_documento": {
+                                        "type": "integer"
+                                    },
+                                    "direccion": {
+                                        "type": "string"
+                                    },
+                                    "telefono": {
+                                        "type": "string"
+                                    },
+                                    "correo": {
+                                        "type": "string"
+                                    },
+                                    "contactos": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "numero": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "tipo_documento_id": 1,
+                                    "razon_social": "razon social example 1",
+                                    "numero_documento": 123456789,
+                                    "direccion": "direccion example 1",
+                                    "telefono": "+51 987654321",
+                                    "correo": "correo@example1.com",
+                                    "contactos": [
+                                        {
+                                            "contactos": 987212321
+                                        },
+                                        {
+                                            "contactos": 978131544
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "resp": {
+                                            "type": "string",
+                                            "example": "Registro creado correctamente"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "invalid",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "Error": {
+                                            "type": "string",
+                                            "example": "Error: El Registro no se ha creado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/proveedores/update_/{id}": {
+            "put": {
+                "tags": [
+                    "Table 1 - 2"
+                ],
+                "summary": "Actualiza Registros",
+                "description": "Actualiza un Registro de Proveedor mediante su ID",
+                "operationId": "fe4602f720e754679d5a97387605c094",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "tipo_documento_id",
+                        "in": "query",
+                        "description": "tipo de documento (RUC)",
+                        "required": false,
+                        "schema": {
+                            "type": "number"
+                        },
+                        "example": "1"
+                    },
+                    {
+                        "name": "razon_social",
+                        "in": "query",
+                        "description": "Razón Social del Proveedor",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "razon social example 1"
+                    },
+                    {
+                        "name": "numero_documento",
+                        "in": "query",
+                        "description": "Su número de documento",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "123456789"
+                    },
+                    {
+                        "name": "direccion",
+                        "in": "query",
+                        "description": "Dirección del Proveedor",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "direccion example 1"
+                    },
+                    {
+                        "name": "telefono",
+                        "in": "query",
+                        "description": "Su número de teléfono",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "+51 987654321"
+                    },
+                    {
+                        "name": "correo",
+                        "in": "query",
+                        "description": "Su correo Electrónico",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "correo@example1.com"
+                    },
+                    {
+                        "name": "numero",
+                        "in": "query",
+                        "description": "Su contacto número/correo",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "978131544"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "aplication/json": {
+                            "schema": {
+                                "properties": {
+                                    "tipo_documento_id": {
+                                        "type": "integer"
+                                    },
+                                    "razon_social": {
+                                        "type": "string"
+                                    },
+                                    "numero_documento": {
+                                        "type": "string"
+                                    },
+                                    "direccion": {
+                                        "type": "string"
+                                    },
+                                    "telefono": {
+                                        "type": "string"
+                                    },
+                                    "correo": {
+                                        "type": "string"
+                                    },
+                                    "contactos": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "numero": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "tipo_documento_id": 1,
+                                    "razon_social": "razon social example 1",
+                                    "numero_documento": 123456789,
+                                    "direccion": "direccion example 1",
+                                    "telefono": "+51 987654321",
+                                    "correo": "correo@example1.com",
+                                    "contactos": [
+                                        {
+                                            "contactos": 987212321
+                                        },
+                                        {
+                                            "contactos": 978131544
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "resp": {
+                                            "type": "string",
+                                            "example": "Registro actualizado correctamente"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "501": {
+                        "description": "invalid",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "error: Registro no actualizado..."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/proveedores/delete_/{id}": {
+            "delete": {
+                "tags": [
+                    "Table 1 - 2"
+                ],
+                "summary": "Inactiva Registros",
+                "description": "Inactiva Registros de Proveedor",
+                "operationId": "6ce9298ea51b6c24569de549488dbfe7",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "resp": {
+                                            "type": "string",
+                                            "example": "Registro inactivado correctamente"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "invalid",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Error: El registro no se ha inactivado"
                                         }
                                     },
                                     "type": "object"
