@@ -17,4 +17,9 @@ class Table_3_4 extends Model
     protected $hidden = [
         'created_at', 'updated_at','deleted_at'
     ];
+
+    public function table_7()
+    {
+        return $this->belongsTo(Table_7::class);
+    }
 }
