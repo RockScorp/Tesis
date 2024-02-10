@@ -63,32 +63,26 @@ class TesisController extends Controller
      *      @OA\RequestBody(
      *          @OA\MediaType(mediaType="aplication/json",
      *              @OA\Schema(
-     *                  @OA\Property(property="tipo_documento_id", type="integer"),
-     *                  @OA\Property(property="razon_social", type="integer"),
-     *                  @OA\Property(property="numero_documento", type="integer"),
-     *                  @OA\Property(property="direccion", type="string"),
-     *                  @OA\Property(property="telefono", type="string"),
-     *                  @OA\Property(property="correo", type="string"),
+     *                  @OA\Property(property="campo_1", type="string"),
+     *                  @OA\Property(property="campo_2", type="string"),
+     *                  @OA\Property(property="campo_3", type="string"),
      *
-     *                  @OA\Property(property="contactos", type="array",
+     *                  @OA\Property(property="table_2", type="array",
      *                      @OA\Items(type="object",
-     *                          @OA\Property(property="numero", type="string"),
+     *                          @OA\Property(property="campo_1", type="string"),
      *                      )
      *                  ),
      *
      *                  example={
-     *                      "tipo_documento_id": 1,
-     *                      "razon_social": "razon social example 1",
-     *                      "numero_documento": 123456789,
-     *                      "direccion":"direccion example 1",
-     *                      "telefono":"+51 987654321",
-     *                      "correo":"correo@example1.com",
-     *                      "contactos":{
+     *                      "campo_1": "Nombre Example 3",
+     *                      "campo_2": "Apellido Example 3",
+     *                      "campo_3": "Empresa Example SAC 3",
+     *                      "table_2":{
      *                          {
-     *                              "contactos": 987212321,
+     *                              "campo_1": "987212211",
      *                          },
      *                          {
-     *                              "contactos": 978131544,
+     *                              "campo_1": "978131212",
      *                          }
      *                      }
      *                   }
@@ -146,63 +140,50 @@ class TesisController extends Controller
      *     @OA\Parameter(in="path",name="id",required=true,
      *          @OA\Schema(type="string")
      *     ),
-     *      @OA\Parameter(description="tipo de documento (RUC)",@OA\Schema(type="number"), name="tipo_documento_id", in="query", required=false, example="1"),
-     *      @OA\Parameter(description="Razón Social del Proveedor",@OA\Schema(type="string"), name="razon_social", in="query", required=false, example="razon social example 1"),
-     *      @OA\Parameter(description="Su número de documento",@OA\Schema(type="string"), name="numero_documento", in="query", required=false, example="123456789"),
-     *      @OA\Parameter(description="Dirección del Proveedor",@OA\Schema(type="string"), name="direccion", in="query", required=false, example="direccion example 1"),
-     *      @OA\Parameter(description="Su número de teléfono",@OA\Schema(type="string"), name="telefono", in="query", required=false, example="+51 987654321"),
-     *      @OA\Parameter(description="Su correo Electrónico",@OA\Schema(type="string"), name="correo", in="query", required=false, example="correo@example1.com"),
-     *      @OA\Parameter(description="Su contacto número/correo",@OA\Schema(type="string"), name="numero", in="query", required=false, example="978131544"),
+     *      @OA\Parameter(description="Descripcion del campo 1",@OA\Schema(type="string"), name="campo_1", in="query", required=false, example="Nombre Example 3"),
+     *      @OA\Parameter(description="Descripcion del campo 2",@OA\Schema(type="string"), name="campo_2", in="query", required=false, example="Apellido Example 3"),
+     *      @OA\Parameter(description="Descripcion del campo 3",@OA\Schema(type="string"), name="campo_3", in="query", required=false, example="Empresa Example SAC 3"),
+     *      @OA\Parameter(description="Descripcion del campo 1 de la tabla 2",@OA\Schema(type="string"), name="campo_1", in="query", required=false, example="987212211"),
      *      @OA\RequestBody(
      *          @OA\MediaType(mediaType="aplication/json",
      *              @OA\Schema(
-     *                  @OA\Property(property="tipo_documento_id", type="integer"),
-     *                  @OA\Property(property="razon_social", type="string"),
-     *                  @OA\Property(property="numero_documento", type="string"),
-     *                  @OA\Property(property="direccion", type="string"),
-     *                  @OA\Property(property="telefono", type="string"),
-     *                  @OA\Property(property="correo", type="string"),
+     *                  @OA\Property(property="campo_1", type="string"),
+     *                  @OA\Property(property="campo_2", type="string"),
+     *                  @OA\Property(property="campo_3", type="string"),
      *
-     *                  @OA\Property(property="contactos", type="array",
+     *                  @OA\Property(property="table_2", type="array",
      *                      @OA\Items(type="object",
-     *                          @OA\Property(property="numero", type="string"),
+     *                          @OA\Property(property="campo_1", type="integer"),
      *                      )
      *                  ),
      *
      *                  example={
-     *                      "tipo_documento_id": 1,
-     *                      "razon_social": "razon social example 1",
-     *                      "numero_documento": 123456789,
-     *                      "direccion":"direccion example 1",
-     *                      "telefono":"+51 987654321",
-     *                      "correo":"correo@example1.com",
-     *                      "contactos":{
+     *                      "campo_1": "Nombre Example 3",
+     *                      "campo_2": "Apellido Example 3",
+     *                      "campo_3": "Empresa Example SAC 3",
+     *                      "table_2":{
      *                          {
-     *                              "contactos": 987212321,
+     *                              "campo_1": "987212211",
      *                          },
      *                          {
-     *                              "contactos": 978131544,
+     *                              "campo_1": "978131212",
      *                          }
      *                      }
      *                   }
      *              )
      *          )
      *      ),
-     *         @OA\Response(
-     *         response=200,
-     *         description="success",
-     *         @OA\JsonContent(
-     *             @OA\Property(property="resp", type="string", example="Registro actualizado correctamente")
-     *         )
+     *         @OA\Response(response=200,description="success",
+     *             @OA\JsonContent(
+     *                 @OA\Property(property="resp", type="string", example="Registro actualizado correctamente")
+     *             )
      *      ),
-     *         @OA\Response(
-     *         response=501,
-     *         description="invalid",
-     *         @OA\JsonContent(
-     *             @OA\Property(property="error", type="string", example="error: Registro no actualizado...")
+     *         @OA\Response(response=501,description="invalid",
+     *             @OA\JsonContent(
+     *                 @OA\Property(property="error", type="string", example="error: Registro no actualizado...")
      *             )
      *         )
-     * )
+     *     )
      */
 
     public function update_tabla_1_2(Request $rqt, $id){

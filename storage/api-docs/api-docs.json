@@ -112,29 +112,20 @@
                         "aplication/json": {
                             "schema": {
                                 "properties": {
-                                    "tipo_documento_id": {
-                                        "type": "integer"
-                                    },
-                                    "razon_social": {
-                                        "type": "integer"
-                                    },
-                                    "numero_documento": {
-                                        "type": "integer"
-                                    },
-                                    "direccion": {
+                                    "campo_1": {
                                         "type": "string"
                                     },
-                                    "telefono": {
+                                    "campo_2": {
                                         "type": "string"
                                     },
-                                    "correo": {
+                                    "campo_3": {
                                         "type": "string"
                                     },
-                                    "contactos": {
+                                    "table_2": {
                                         "type": "array",
                                         "items": {
                                             "properties": {
-                                                "numero": {
+                                                "campo_1": {
                                                     "type": "string"
                                                 }
                                             },
@@ -144,18 +135,15 @@
                                 },
                                 "type": "object",
                                 "example": {
-                                    "tipo_documento_id": 1,
-                                    "razon_social": "razon social example 1",
-                                    "numero_documento": 123456789,
-                                    "direccion": "direccion example 1",
-                                    "telefono": "+51 987654321",
-                                    "correo": "correo@example1.com",
-                                    "contactos": [
+                                    "campo_1": "Nombre Example 3",
+                                    "campo_2": "Apellido Example 3",
+                                    "campo_3": "Empresa Example SAC 3",
+                                    "table_2": [
                                         {
-                                            "contactos": 987212321
+                                            "campo_1": "987212211"
                                         },
                                         {
-                                            "contactos": 978131544
+                                            "campo_1": "978131212"
                                         }
                                     ]
                                 }
@@ -222,74 +210,44 @@
                         }
                     },
                     {
-                        "name": "tipo_documento_id",
+                        "name": "campo_1",
                         "in": "query",
-                        "description": "tipo de documento (RUC)",
-                        "required": false,
-                        "schema": {
-                            "type": "number"
-                        },
-                        "example": "1"
-                    },
-                    {
-                        "name": "razon_social",
-                        "in": "query",
-                        "description": "Razón Social del Proveedor",
+                        "description": "Descripcion del campo 1",
                         "required": false,
                         "schema": {
                             "type": "string"
                         },
-                        "example": "razon social example 1"
+                        "example": "Nombre Example 3"
                     },
                     {
-                        "name": "numero_documento",
+                        "name": "campo_2",
                         "in": "query",
-                        "description": "Su número de documento",
+                        "description": "Descripcion del campo 2",
                         "required": false,
                         "schema": {
                             "type": "string"
                         },
-                        "example": "123456789"
+                        "example": "Apellido Example 3"
                     },
                     {
-                        "name": "direccion",
+                        "name": "campo_3",
                         "in": "query",
-                        "description": "Dirección del Proveedor",
+                        "description": "Descripcion del campo 3",
                         "required": false,
                         "schema": {
                             "type": "string"
                         },
-                        "example": "direccion example 1"
+                        "example": "Empresa Example SAC 3"
                     },
                     {
-                        "name": "telefono",
+                        "name": "campo_1",
                         "in": "query",
-                        "description": "Su número de teléfono",
+                        "description": "Descripcion del campo 1 de la tabla 2",
                         "required": false,
                         "schema": {
                             "type": "string"
                         },
-                        "example": "+51 987654321"
-                    },
-                    {
-                        "name": "correo",
-                        "in": "query",
-                        "description": "Su correo Electrónico",
-                        "required": false,
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "correo@example1.com"
-                    },
-                    {
-                        "name": "numero",
-                        "in": "query",
-                        "description": "Su contacto número/correo",
-                        "required": false,
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "978131544"
+                        "example": "987212211"
                     }
                 ],
                 "requestBody": {
@@ -297,30 +255,21 @@
                         "aplication/json": {
                             "schema": {
                                 "properties": {
-                                    "tipo_documento_id": {
-                                        "type": "integer"
-                                    },
-                                    "razon_social": {
+                                    "campo_1": {
                                         "type": "string"
                                     },
-                                    "numero_documento": {
+                                    "campo_2": {
                                         "type": "string"
                                     },
-                                    "direccion": {
+                                    "campo_3": {
                                         "type": "string"
                                     },
-                                    "telefono": {
-                                        "type": "string"
-                                    },
-                                    "correo": {
-                                        "type": "string"
-                                    },
-                                    "contactos": {
+                                    "table_2": {
                                         "type": "array",
                                         "items": {
                                             "properties": {
-                                                "numero": {
-                                                    "type": "string"
+                                                "campo_1": {
+                                                    "type": "integer"
                                                 }
                                             },
                                             "type": "object"
@@ -329,18 +278,15 @@
                                 },
                                 "type": "object",
                                 "example": {
-                                    "tipo_documento_id": 1,
-                                    "razon_social": "razon social example 1",
-                                    "numero_documento": 123456789,
-                                    "direccion": "direccion example 1",
-                                    "telefono": "+51 987654321",
-                                    "correo": "correo@example1.com",
-                                    "contactos": [
+                                    "campo_1": "Nombre Example 3",
+                                    "campo_2": "Apellido Example 3",
+                                    "campo_3": "Empresa Example SAC 3",
+                                    "table_2": [
                                         {
-                                            "contactos": 987212321
+                                            "campo_1": "987212211"
                                         },
                                         {
-                                            "contactos": 978131544
+                                            "campo_1": "978131212"
                                         }
                                     ]
                                 }
