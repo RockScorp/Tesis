@@ -393,6 +393,270 @@
                     }
                 ]
             }
+        },
+        "/api/tabla_3_4/get": {
+            "get": {
+                "tags": [
+                    "Table 3 - 4"
+                ],
+                "summary": "Muestra los Registros",
+                "description": "Permite visualizar un listado de todos los registros",
+                "operationId": "2cc45b9e6354ea09ea6ac8722e1f7ea4",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "campo_1": {
+                                            "type": "string",
+                                            "example": "Nombre Example"
+                                        },
+                                        "state": {
+                                            "type": "char",
+                                            "example": "A"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "invalid",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "No se encuentran los datos"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/tabla_3_4/create": {
+            "post": {
+                "tags": [
+                    "Table 3 - 4"
+                ],
+                "summary": "Crea Registros",
+                "description": "Crear nuevos Registros para Table 3 o 4",
+                "operationId": "b7d494b9e495db2e4f4a7420afa917ad",
+                "requestBody": {
+                    "content": {
+                        "aplication/json": {
+                            "schema": {
+                                "properties": {
+                                    "campo_1": {
+                                        "type": "string",
+                                        "example": "unidad/presentacion example 1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "resp": {
+                                            "type": "string",
+                                            "example": "Registro creado correctamente"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "invalid",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "Error": {
+                                            "type": "string",
+                                            "example": "Error: El Registro no se ha creado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/tabla_3_4/update/{id}": {
+            "put": {
+                "tags": [
+                    "Table 3 - 4"
+                ],
+                "summary": "Actualiza Registros",
+                "description": "Actualiza un Registro de Table 3 o 4 mediante su ID",
+                "operationId": "2e826e6054b7f41cd81ec4ed14ead82a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "campo_1",
+                        "in": "query",
+                        "description": "Descripcion del campo 1",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "unidad/presentacion example 1"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "aplication/json": {
+                            "schema": {
+                                "properties": {
+                                    "campo_1": {
+                                        "type": "string",
+                                        "example": "unidad/presentacion example 1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "resp": {
+                                            "type": "string",
+                                            "example": "Registro actualizado correctamente"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "501": {
+                        "description": "invalid",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "error: Registro no actualizado..."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/tabla_3_4/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "Table 3 - 4"
+                ],
+                "summary": "Inactiva Registros",
+                "description": "Inactiva Registros de Table 3 o 4",
+                "operationId": "a3b8b5910fdb7daf67ed31613e28333e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "resp": {
+                                            "type": "string",
+                                            "example": "Registro inactivado correctamente"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "invalid",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Error: El registro no se ha inactivado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
         }
     },
     "components": {

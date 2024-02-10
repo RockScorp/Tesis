@@ -265,13 +265,62 @@ class TesisController extends Controller
         }
     }
 
-    //================= table 3 y 4
+    //================= table 3 y 4 =============================================================\\
+
+    /**
+     * Permite visualizar un listado de todos los registros
+     * @OA\Get (
+     *     path="/api/tabla_3_4/get",
+     *     summary="Muestra los Registros",
+     *     security={{ "bearerAuth": {} }},
+     *     tags={"Table 3 - 4"},
+     *     @OA\Response(response=200,description="success",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="id", type="integer", example=1),
+     *              @OA\Property(property="campo_1", type="string", example="Nombre Example"),
+     *              @OA\Property(property="state", type="char", example="A"),
+     *          )
+     *      ),
+     *         @OA\Response(response=400,description="invalid",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="error", type="string", example="No se encuentran los datos")
+     *             )
+     *         )
+     *  )
+     */
 
     public function get_tabla_3_4(){
         $variable=Table_3_4::where('state','A')->get();
         if(count($variable)==0) return response()->json(["Error" => "No hay Registros..."]);
         return response()->json($variable);
     }
+
+    /**
+     * Crear nuevos Registros para Table 3 o 4
+     * @OA\Post(
+     *     path="/api/tabla_3_4/create",
+     *     summary="Crea Registros",
+     *     security={{ "bearerAuth":{} }},
+     *     tags={"Table 3 - 4"},
+     *      @OA\RequestBody(
+     *          @OA\MediaType(mediaType="aplication/json",
+     *              @OA\Schema(
+     *                  @OA\Property(property="campo_1", type="string", example="unidad/presentacion example 1"),
+     *              )
+     *          )
+     *      ),
+     *      @OA\Response(response=200,description="success",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="resp", type="string", example="Registro creado correctamente")
+     *         )
+     *     ),
+     *     @OA\Response(response=400, description="invalid",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="Error", type="string", example="Error: El Registro no se ha creado"),
+     *         )
+     *     ),
+     * )
+     */
 
     public function create_tabla_3_4(Request $rqt){
         try {
@@ -289,6 +338,38 @@ class TesisController extends Controller
             return response()->json(["Error".$e]);
         }
     }
+
+    /**
+     * Actualiza un Registro de Table 3 o 4 mediante su ID
+     *
+     * @OA\Put(
+     *     path="/api/tabla_3_4/update/{id}",
+     *     summary="Actualiza Registros",
+     *     security={{ "bearerAuth":{} }},
+     *     tags={"Table 3 - 4"},
+     *     @OA\Parameter(in="path",name="id",required=true,
+     *          @OA\Schema(type="string")
+     *     ),
+     *      @OA\Parameter(description="Descripcion del campo 1",@OA\Schema(type="string"), name="campo_1", in="query", required=false, example="unidad/presentacion example 1"),
+     *      @OA\RequestBody(
+     *          @OA\MediaType(mediaType="aplication/json",
+     *              @OA\Schema(
+     *                  @OA\Property(property="campo_1", type="string", example="unidad/presentacion example 1"),
+     *              )
+     *          )
+     *      ),
+     *         @OA\Response(response=200,description="success",
+     *             @OA\JsonContent(
+     *                 @OA\Property(property="resp", type="string", example="Registro actualizado correctamente")
+     *             )
+     *      ),
+     *         @OA\Response(response=501,description="invalid",
+     *             @OA\JsonContent(
+     *                 @OA\Property(property="error", type="string", example="error: Registro no actualizado...")
+     *             )
+     *         )
+     *     )
+     */
 
     public function update_tabla_3_4(Request $rqt, $id){
         try {
@@ -308,6 +389,32 @@ class TesisController extends Controller
         }
     }
 
+    /**
+     * Inactiva Registros de Table 3 o 4
+     * @OA\Delete (
+     *     path="/api/tabla_3_4/delete/{id}",
+     *     summary = "Inactiva Registros",
+     *     security={{ "bearerAuth": {} }},
+     *     tags={"Table 3 - 4"},
+     *     @OA\Parameter(
+     *        in="path",
+     *        name="id",
+     *        required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Response(response=200,description="success",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="resp", type="string", example="Registro inactivado correctamente")
+     *         )
+     *     ),
+     *     @OA\Response(response=400,description="invalid",
+     *          @OA\JsonContent(
+     *             @OA\Property(property="error", type="string", example="Error: El registro no se ha inactivado"),
+     *         )
+     *     )
+     * )
+     */
+
     public function delete_tabla_3_4($id){
         try {
             DB::beginTransaction();
@@ -324,7 +431,7 @@ class TesisController extends Controller
         }
     }
 
-    //================= table 5 y 6
+    //================= table 5 y 6 =============================================================\\
 
     public function get_tabla_5_6(){
         $variable=Table_5_6::where('state','A')->with('table_3')->get();
@@ -387,7 +494,7 @@ class TesisController extends Controller
         }
     }
 
-    //================= table 7
+    //================= table 7 =============================================================\\
 
     public function get_tabla_7(){
         $variable=Table_7::where('state','A')->with('table_4')->get();
