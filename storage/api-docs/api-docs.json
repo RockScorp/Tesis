@@ -657,6 +657,706 @@
                     }
                 ]
             }
+        },
+        "/api/tabla_5_6/get": {
+            "get": {
+                "tags": [
+                    "Table 5 - 6"
+                ],
+                "summary": "Muestra los Registros",
+                "description": "Permite visualizar un listado de todos los registros",
+                "operationId": "cf650498bbad1e9d0eb3ef4306bbafc3",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "campo_1": {
+                                            "type": "string",
+                                            "example": "Nombre Example"
+                                        },
+                                        "campo_2": {
+                                            "type": "string",
+                                            "example": "Apellido Example"
+                                        },
+                                        "table_3_id": {
+                                            "type": "integer",
+                                            "example": 2
+                                        },
+                                        "state": {
+                                            "type": "char",
+                                            "example": "A"
+                                        },
+                                        "table_3": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 2
+                                                    },
+                                                    "campo_1": {
+                                                        "type": "integer",
+                                                        "example": "unidad example 1"
+                                                    },
+                                                    "state": {
+                                                        "type": "char",
+                                                        "example": "A"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "invalid",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "No se encuentran los datos"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/tabla_5_6/create": {
+            "post": {
+                "tags": [
+                    "Table 5 - 6"
+                ],
+                "summary": "Crea Registros",
+                "description": "Crear nuevos Registros para Table 5 y 6",
+                "operationId": "203bd6328b44b98314e7ca374d399bd1",
+                "requestBody": {
+                    "content": {
+                        "aplication/json": {
+                            "schema": {
+                                "properties": {
+                                    "campo_1": {
+                                        "type": "string",
+                                        "example": "servicio example 1"
+                                    },
+                                    "campo_2": {
+                                        "type": "string",
+                                        "example": "descripcion example 1"
+                                    },
+                                    "table_3_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "resp": {
+                                            "type": "string",
+                                            "example": "Registro creado correctamente"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "invalid",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "Error": {
+                                            "type": "string",
+                                            "example": "Error: El Registro no se ha creado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/tabla_5_6/update/{id}": {
+            "put": {
+                "tags": [
+                    "Table 5 - 6"
+                ],
+                "summary": "Actualiza Registros",
+                "description": "Actualiza un Registro de Table 5 o 6 mediante su ID",
+                "operationId": "52367e5cc45957ec8c232e3bb14e8a5f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "campo_1",
+                        "in": "query",
+                        "description": "Descripcion del campo 1",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "servicio example 1"
+                    },
+                    {
+                        "name": "campo_2",
+                        "in": "query",
+                        "description": "Descripcion del campo 2",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "descripcion example 1"
+                    },
+                    {
+                        "name": "table_3_id",
+                        "in": "query",
+                        "description": "el ID de la tabla_3_4",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "aplication/json": {
+                            "schema": {
+                                "properties": {
+                                    "campo_1": {
+                                        "type": "string",
+                                        "example": "servicio example 1"
+                                    },
+                                    "campo_2": {
+                                        "type": "string",
+                                        "example": "descripcion example 1"
+                                    },
+                                    "table_3_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "resp": {
+                                            "type": "string",
+                                            "example": "Registro actualizado correctamente"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "501": {
+                        "description": "invalid",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "error: Registro no actualizado..."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/tabla_5_6/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "Table 5 - 6"
+                ],
+                "summary": "Inactiva Registros",
+                "description": "Inactiva Registros de Table 5 o 6",
+                "operationId": "3609381692898b8c172d4e44c2b69ea2",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "resp": {
+                                            "type": "string",
+                                            "example": "Registro inactivado correctamente"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "invalid",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Error: El registro no se ha inactivado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/tabla_7/get": {
+            "get": {
+                "tags": [
+                    "Table 7"
+                ],
+                "summary": "Muestra los Registros",
+                "description": "Permite visualizar un listado de todos los registros",
+                "operationId": "5861face9511c6a40007ec05b43de08a",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "campo_1": {
+                                            "type": "string",
+                                            "example": "Materia Prima Example"
+                                        },
+                                        "campo_2": {
+                                            "type": "string",
+                                            "example": "Descripcion Example"
+                                        },
+                                        "campo_3": {
+                                            "type": "string",
+                                            "example": "Codigo Example"
+                                        },
+                                        "table_4_id": {
+                                            "type": "integer",
+                                            "example": 2
+                                        },
+                                        "campo_4": {
+                                            "type": "string",
+                                            "example": 30
+                                        },
+                                        "state": {
+                                            "type": "char",
+                                            "example": "A"
+                                        },
+                                        "table_4": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 2
+                                                    },
+                                                    "campo_1": {
+                                                        "type": "integer",
+                                                        "example": "presentacion example 1"
+                                                    },
+                                                    "state": {
+                                                        "type": "char",
+                                                        "example": "A"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "invalid",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "No se encuentran los datos"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/tabla_7/create": {
+            "post": {
+                "tags": [
+                    "Table 7"
+                ],
+                "summary": "Crea Registros",
+                "description": "Crear nuevos Registros para Table 7",
+                "operationId": "b927eca031c1b1854f82b9eea1cf7b4a",
+                "requestBody": {
+                    "content": {
+                        "aplication/json": {
+                            "schema": {
+                                "properties": {
+                                    "campo_1": {
+                                        "type": "string",
+                                        "example": "Materia Prima Example"
+                                    },
+                                    "campo_2": {
+                                        "type": "string",
+                                        "example": "Descripcion Example"
+                                    },
+                                    "campo_3": {
+                                        "type": "string",
+                                        "example": "Codigo Example"
+                                    },
+                                    "table_4_id": {
+                                        "type": "integer",
+                                        "example": 2
+                                    },
+                                    "campo_4": {
+                                        "type": "string",
+                                        "example": 30
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "resp": {
+                                            "type": "string",
+                                            "example": "Registro creado correctamente"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "invalid",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "Error": {
+                                            "type": "string",
+                                            "example": "Error: El Registro no se ha creado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/tabla_7/update/{id}": {
+            "put": {
+                "tags": [
+                    "Table 7"
+                ],
+                "summary": "Actualiza Registros",
+                "description": "Actualiza un Registro de Table 7 mediante su ID",
+                "operationId": "d7a7d4272507994b510aa9d4083043a9",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "campo_1",
+                        "in": "query",
+                        "description": "Descripcion del campo 1",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "materia prima example 1"
+                    },
+                    {
+                        "name": "campo_2",
+                        "in": "query",
+                        "description": "Descripcion del campo 2",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "descripcion example 1"
+                    },
+                    {
+                        "name": "campo_3",
+                        "in": "query",
+                        "description": "Descripcion del campo 4",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "codigo example 1"
+                    },
+                    {
+                        "name": "table_3_id",
+                        "in": "query",
+                        "description": "el ID de la tabla_3_4",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    },
+                    {
+                        "name": "campo_4",
+                        "in": "query",
+                        "description": "Descripcion del campo 4 - numerico",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 30
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "aplication/json": {
+                            "schema": {
+                                "properties": {
+                                    "campo_1": {
+                                        "type": "string",
+                                        "example": "Materia Prima Example"
+                                    },
+                                    "campo_2": {
+                                        "type": "string",
+                                        "example": "Descripcion Example"
+                                    },
+                                    "campo_3": {
+                                        "type": "string",
+                                        "example": "Codigo Example"
+                                    },
+                                    "table_4_id": {
+                                        "type": "integer",
+                                        "example": 2
+                                    },
+                                    "campo_4": {
+                                        "type": "string",
+                                        "example": 30
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "resp": {
+                                            "type": "string",
+                                            "example": "Registro actualizado correctamente"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "501": {
+                        "description": "invalid",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "error: Registro no actualizado..."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/tabla_7/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "Table 7"
+                ],
+                "summary": "Inactiva Registros",
+                "description": "Inactiva Registros de Table 7",
+                "operationId": "4072c7b0022151ee80891d798ca75ba7",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "resp": {
+                                            "type": "string",
+                                            "example": "Registro inactivado correctamente"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "invalid",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Error: El registro no se ha inactivado"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
         }
     },
     "components": {
