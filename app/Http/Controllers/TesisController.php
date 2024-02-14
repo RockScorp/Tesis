@@ -695,9 +695,9 @@ class TesisController extends Controller
                 "campo_1"=>$rqt->campo_1,
                 "campo_2"=>$rqt->campo_2,
                 "campo_3"=>$rqt->campo_3,
+            ],[
                 "table_4_id"=>$rqt->table_4_id,
                 "campo_4"=>$rqt->campo_4,
-            ],[
                 "state"=>"A"
             ]);
 
