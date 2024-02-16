@@ -671,7 +671,6 @@ class TesisController extends Controller
      *                 @OA\Property(property="campo_2", type="string", example="Descripcion Example"),
      *                 @OA\Property(property="campo_3", type="string", example="Codigo Example"),
      *                 @OA\Property(property="table_4_id", type="integer", example=2),
-     *                 @OA\Property(property="campo_4", type="string", example=30),
      *             )
      *         )
      *     ),
@@ -697,7 +696,7 @@ class TesisController extends Controller
                 "campo_3"=>$rqt->campo_3,
             ],[
                 "table_4_id"=>$rqt->table_4_id,
-                "campo_4"=>$rqt->campo_4,
+                // "campo_4"=>$rqt->campo_4,
                 "state"=>"A"
             ]);
 
@@ -722,7 +721,7 @@ class TesisController extends Controller
      *     ),
      *      @OA\Parameter(description="Descripcion del campo 1",@OA\Schema(type="string"), name="campo_1", in="query", required=false, example="materia prima example 1"),
      *      @OA\Parameter(description="Descripcion del campo 2",@OA\Schema(type="string"), name="campo_2", in="query", required=false, example="descripcion example 1"),
-     *      @OA\Parameter(description="Descripcion del campo 4",@OA\Schema(type="string"), name="campo_3", in="query", required=false, example="codigo example 1"),
+     *      @OA\Parameter(description="Descripcion del campo 3",@OA\Schema(type="string"), name="campo_3", in="query", required=false, example="codigo example 1"),
      *      @OA\Parameter(description="el ID de la tabla_3_4",@OA\Schema(type="integer"), name="table_3_id", in="query", required=false, example=1),
      *      @OA\Parameter(description="Descripcion del campo 4 - numerico",@OA\Schema(type="integer"), name="campo_4", in="query", required=false, example=30),
      *      @OA\RequestBody(
